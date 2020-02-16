@@ -1,0 +1,19 @@
+{
+  "name": "tabcontrol",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "web-ext": "^4.1.0"
+  },
+  "dependencies": {
+    "alfy": "^0.9.1",
+    "node-ipc": "^9.1.1"
+  }
+}
