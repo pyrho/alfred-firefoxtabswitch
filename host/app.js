@@ -1,160 +1,84 @@
 #!/usr/local/bin/node
-const fs = require('fs');
-const ipc = require('node-ipc');
-const stream = require('stream');
 
-const pendingRequests = {};
+import ipc from 'node-ipc';
+import { getRequestId, logToFile } from './utils.js';
+import config from './config.js';
+import initNmHost from 'node-native-messaging-host';
 
-const getRequestId = (() => {
-    let id = 1;
-    return () => ++id;
-
-})();
-
-function logToFile(m) {
-    fs.appendFileSync('/tmp/nmlog', `${m}\n`);
-}
-
-function sendRequestAndGetResponse(cmd) {
-    const requestId = getRequestId();
-
+function sendRequestAndGetResponse({ nm, cmd, pendingRequests }) {
     return new Promise(resolve => {
+        const requestId = getRequestId();
         const msg = JSON.stringify({
             cmd,
             requestId,
-        })
+        });
 
         logToFile(`Sending to extension : ${msg}`);
 
-        sendMessage(msg);
+        nm.send(msg);
 
         pendingRequests[requestId] = resolve;
     });
 }
 
-function startServer() {
-    ipc.config.id   = 'world';
+function startServer(cb) {
+    ipc.config.id   = 'host';
     ipc.config.retry= 1500;
     ipc.config.silent = true; // no logging
-    ipc.serveNet(
-        8000,
-        'udp4',
-        function(){
-            ipc.server.on(
-                'message',
-                function(data, socket){
-                    logToFile('got message from client');
-                    const command = data.message;
-
-                    // Ask the extension
-                    sendRequestAndGetResponse(command).then(r => {
-
-                        logToFile('RESOLVED!');
-                        try {
-                            // Reply to the client
-                            logToFile('sending: ' + r);
-                            ipc.server.emit( socket, 'message', {
-                                from: ipc.config.id,
-                                message: r.toString('utf8'),
-                            });
-                            logToFile('sent');
-                        } catch (e) {
-                            logToFile(`Failed to reply on socket: ${e}`);
-                        }
-                    });
-                }
-            );
-
-        }
-    );
-
+    ipc.serveNet(config.ipc.serverPort, 'udp4', () => ipc.server.on('message', cb));
     ipc.server.start();
-
+    logToFile('IPC server started');
 }
 
-function startNativeMessagingHost() {
-    let payloadSize = null;
-    let chunks = [];
+function init() {
 
-    const sizeHasBeenRead = () => Boolean(payloadSize);
-    const flushChunksQueue = () => {
-        payloadSize = null;
-        chunks.splice(0);
-    };
-    const fulfillRequest = (requestId, content) => {
+    process.stderr.write('Init!');
+    logToFile('Init done.');
+    const pendingRequests = {};
+    const nm = initNmHost();
+
+    const fulfillRequest = (requestId, data) => {
         if (Object.keys(pendingRequests).some(k => k === requestId)) {
             logToFile('requestID not found in pendingRequests');
             return;
         }
         logToFile('Fulfilling request ' + requestId);
-        pendingRequests[requestId](content);
+        pendingRequests[requestId](data);
     }
 
-    const processData = () => {
-        logToFile('-------------->');
-
-        const stringData = Buffer.concat(chunks);
-        if (!sizeHasBeenRead()) {
-            payloadSize = stringData.readUInt32LE(0);
+    nm.addOnMessageListener((error, json) => {
+        if (error) {
+            process.stderr.write('Error on NM onMessage: ' + error);
         }
 
-        if (stringData.length >= (payloadSize + 4)) {
-            const contentWithoutSize = stringData.slice(4, (payloadSize + 4));
-            logToFile(`Ok data ${contentWithoutSize}`);
-            flushChunksQueue();
-
-            let json = null;
-            try {
-                json = JSON.parse(contentWithoutSize);
-            } catch (e) {
-                logToFile(`Unable to parse JSON: ${e}`);
-                logToFile(contentWithoutSize);
-                return;
-            }
-
-            if (!json.requestId) {
-                logToFile('RequestID missing in extension response');
-                return;
-            }
-
-            if (!pendingRequests[json.requestId]) {
-                logToFile('requestID not found in pendingRequests');
-                return;
-            }
-
-            fulfillRequest(json.requestId, contentWithoutSize);
+        if (!json.requestId) {
+            logToFile('RequestID missing in extension response');
             return;
-
-        } else {
-            logToFile(`Nope ${stringData}`);
         }
 
-        logToFile('--------------<');
-
-    };
-
-    process.stdin.on('readable', () => {
-        let chunk;
-        // Use a loop to make sure we read all available data.
-        while ((chunk = process.stdin.read()) !== null) {
-            chunks.push(chunk);
+        if (!pendingRequests[json.requestId]) {
+            logToFile('requestID not found in pendingRequests');
+            return;
         }
 
-        processData();
+        fulfillRequest(json.requestId, json.data);
+
     });
 
-    process.on('uncaughtException', (err) => {
-        sendMessage({error: err.toString()})
+
+    startServer((data, socket) => {
+        logToFile('got message from client');
+        const command = data.message;
+
+        // Ask the extension
+        sendRequestAndGetResponse({ pendingRequests, nm, cmd: command}).then(r => {
+            logToFile('RESOLVED!');
+            ipc.server.emit( socket, 'message', {
+                from: ipc.config.id,
+                message: r,
+            });
+        });
     });
 }
 
-function sendMessage(msg) {
-    var header = Buffer.alloc(4);
-    header.writeUInt32LE(msg.length, 0);
-
-    process.stdout.write(header);
-    process.stdout.write(msg);
-}
-
-startNativeMessagingHost();
-startServer();
+init();

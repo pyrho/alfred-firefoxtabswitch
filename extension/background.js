@@ -82,7 +82,7 @@ port.onMessage.addListener(response => {
 });
 
 port.onDisconnect.addListener(e =>{ 
-    console.log('port disconnected (probably an error): ' + e);
+    console.log('port disconnected (probably an error): ' + JSON.stringify(e, null, 2));
 });
 
 

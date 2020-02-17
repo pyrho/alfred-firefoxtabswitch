@@ -1,2 +1,2 @@
-Alfred tabcontrol
-=================
+Alfred Firefox Tab switcher
+===========================

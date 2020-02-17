@@ -2,6 +2,7 @@
   "name": "tabcontrol",
   "version": "1.0.0",
   "description": "",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -14,6 +15,7 @@
   },
   "dependencies": {
     "alfy": "^0.9.1",
-    "node-ipc": "^9.1.1"
+    "node-ipc": "^9.1.1",
+    "node-native-messaging-host": "0.0.3"
   }
 }
