@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "Alfred Tab Switch",
   "description": "Quickly switch between tabs using Alfred",
-  "version": "0.1.0",
+  "version": "1.0.1",
   "permissions": [
     "nativeMessaging",
     "tabs"
