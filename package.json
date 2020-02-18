@@ -24,5 +24,9 @@
     "alfy": "^0.9.1",
     "node-ipc": "^9.1.1",
     "node-native-messaging-host": "0.0.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pyrho/alfred-firefoxtabswitch.git"
   }
 }
