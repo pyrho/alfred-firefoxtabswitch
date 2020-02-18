@@ -9,7 +9,7 @@ import os from 'os';
         "type": "stdio",
         "allowed_extensions": [ "alfredtabswitch@25.wf" ]
     }
-    const manifestPath = `${os.homedir()}/Library/Application\ Support/Mozilla/NativeMessagingHosts/alfredtabswitchlol.json`;
+    const manifestPath = `${os.homedir()}/Library/Application\ Support/Mozilla/NativeMessagingHosts/alfredtabswitch.json`;
     base.path = `${process.argv[2]}/alfred-firefoxtabswitch/host/app.js`;
 
     fs.writeFileSync(manifestPath, JSON.stringify(base, null, 2), 'utf8');
