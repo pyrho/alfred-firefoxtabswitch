@@ -2,7 +2,6 @@
   "name": "alfred-firefoxtabswitch",
   "version": "1.0.3",
   "description": "An alfred workflow to quickly switch between tabs on Firefox",
-  "type": "module",
   "main": "index.js",
   "scripts": {
     "generateAppManifest": "node generateAppManifest.js $(npm -g root)",
@@ -23,7 +22,7 @@
   "dependencies": {
     "alfy": "^0.9.1",
     "node-ipc": "^9.1.1",
-    "node-native-messaging-host": "0.0.3"
+    "node-native-messaging-host": "^1.0.5"
   },
   "repository": {
     "type": "git",

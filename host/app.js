@@ -1,9 +1,9 @@
 #!/usr/local/bin/node
 
-import ipc from 'node-ipc';
-import { getRequestId, logToFile } from './utils.js';
-import config from './config.js';
-import initNmHost from 'node-native-messaging-host';
+const ipc = require('node-ipc');
+const {  getRequestId, logToFile  } = require('./utils');
+const config = require('./config');
+const initNmHost = require('node-native-messaging-host');
 
 function sendRequestAndGetResponse({ nm, cmd, pendingRequests }) {
     return new Promise(resolve => {

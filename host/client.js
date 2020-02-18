@@ -1,6 +1,6 @@
- import ipc from 'node-ipc';
- import config from './config.js';
- import alfy from 'alfy';
+ const ipc = require('node-ipc');
+ const config = require('./config');
+ const alfy = require('alfy');
 
  function sendMessageToHostApp(message) {
      return new Promise((resolve, reject) => {
