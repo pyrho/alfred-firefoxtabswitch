@@ -1,5 +1,5 @@
-import fs from 'fs';
-import os from 'os';
+const fs = require('fs');
+const os = require('os');
 
 (function () {
     const base = {
