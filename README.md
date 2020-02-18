@@ -1,6 +1,8 @@
 Alfred Firefox Tab switcher
 ===========================
 
+![demo gif](./demo.gif)
+
 An [Alfred](https://www.alfredapp.com/) workflow to quickly switch between
 firefox tabs.
 
