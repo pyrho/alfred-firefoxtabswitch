@@ -1,28 +1,24 @@
 Alfred Firefox Tab switcher
 ===========================
 
-**/!\ WIP /!\**
-
 An [Alfred](https://www.alfredapp.com/) workflow to quickly switch between
 firefox tabs.
 
-# Why so complex?
-
-[Other workflows](https://github.com/stuartcryan/rapid-browser-tabs-for-alfred)
-use Apple Script to switch tabs for Safari, Chrome etc.
-
-But Firefox does not expose its tabs to the system, so the only way is to use an
-extension with an native messaging component that allows alfred to communicate
-with firefox.
-
 # Installation
 
+## Requirements
+
+- [nodeJS](https://nodejs.org/en/) (tested with version 13.7)
+- [Node Package Manager (npm)](https://www.npmjs.com/) (usually installed alongside
+    nodeJS)
+- [Alfred](https://www.alfredapp.com/) + Powerpack License
+
 ## Install the Firefox extension
-TODO
+
+Go to https://addons.mozilla.org/en-US/firefox/addon/alfred-tab-switch/ and
+install it from there.
 
 ## Install the workflow
-
-TODO
 
 ```
 npm install -g alfred-firefoxtabswitch
@@ -41,6 +37,7 @@ If more than one argument is supplied to the workflow, all arguments must be
 present in either the title or the URL.
 
 Then simply hit ENTER on the tab you want to focus.
+
 
 # Architecture
 
@@ -78,14 +75,17 @@ result is returned.
 If the native messaging host fails to reply within 1 second, the client will
 kill itself.
 
+
+## Why so complex?
+
+[Other workflows](https://github.com/stuartcryan/rapid-browser-tabs-for-alfred)
+use Apple Script to switch tabs for Safari, Chrome etc.
+
+But Firefox does not expose its tabs to the system, so the only way is to use an
+extension with an native messaging component that allows alfred to communicate
+with firefox.
+
+
 # Debugging
 
 TODO
-
-Todo
-----
-- [ ] Install native messaging host
-    - ❯ npm -g root: /usr/local/lib/node_modules
-- [ ] Publish FF extension
-- [ ] Publish workflow as NPM module
-
