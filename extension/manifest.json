@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
-  "name": "Alfred Firefox Tab Switch",
-  "description": "",
+  "name": "Alfred Tab Switch",
+  "description": "Quickly switch between tabs using Alfred",
   "version": "0.1.0",
   "permissions": [
     "nativeMessaging",
@@ -14,9 +14,7 @@
     "persistent": false
   },
   "icons": {
-    "16": "icon.png",
-    "48": "icon.png",
-    "128": "icon.png"
+    "48": "icon.png"
   },
   "applications": {
     "gecko": {
