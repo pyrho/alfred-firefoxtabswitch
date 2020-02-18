@@ -15,12 +15,11 @@ firefox tabs.
     nodeJS)
 - [Alfred](https://www.alfredapp.com/) + Powerpack License
 
-## Install the Firefox extension
+## 1. Install the workflow
 
-Go to https://addons.mozilla.org/en-US/firefox/addon/alfred-tab-switch/ and
-install it from there.
-
-## Install the workflow
+You need to install the workflow first as it will also install the native
+messaging host component of the extension (required before the extension is
+started).
 
 ```
 npm install -g alfred-firefoxtabswitch
@@ -29,6 +28,11 @@ npm install -g alfred-firefoxtabswitch
 The workflow will register automatically with Alfred, and the
 [Native Manifest](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Native_manifests)
 will be written automatically upon install at `/Library/Application Support/Mozilla/NativeMessagingHosts/alfredtabswitch.json`
+
+## 2. Install the Firefox extension
+
+Go to https://addons.mozilla.org/en-US/firefox/addon/alfred-tab-switch/ and
+install it from there.
 
 # Usage
 
