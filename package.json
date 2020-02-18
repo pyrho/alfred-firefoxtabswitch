@@ -1,6 +1,6 @@
 {
   "name": "alfred-firefoxtabswitch",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "An alfred workflow to quickly switch between tabs on Firefox",
   "main": "index.js",
   "scripts": {
