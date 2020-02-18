@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
-  "name": "Shell",
-  "description": "Chrome API to execute external commands through native messaging",
+  "name": "Alfred Firefox Tab Switch",
+  "description": "",
   "version": "0.1.0",
   "permissions": [
     "nativeMessaging",
@@ -14,14 +14,13 @@
     "persistent": false
   },
   "icons": {
-    "16": "packages/chromium.png",
-    "48": "packages/chromium.png",
-    "128": "packages/chromium.png"
+    "16": "icon.png",
+    "48": "icon.png",
+    "128": "icon.png"
   },
   "applications": {
     "gecko": {
-      "id": "ping_pong@example.org"
+      "id": "alfred-firefoxtabswitch@25.wf"
     }
   }
 }
-

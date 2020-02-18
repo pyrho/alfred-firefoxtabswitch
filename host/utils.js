@@ -1,8 +1,11 @@
-import fs from 'fs';
+// import fs from 'fs';
 
+/**
+ * Debugging native messaging on FF is a nightmare (not feasable?).
+ * To enable debug logging uncomment the body of the function
+ */
 export function logToFile(m) {
-    // console.error()
-    fs.appendFileSync('/tmp/nmlog', `${m}\n`);
+    // fs.appendFileSync('/tmp/nmlog', `${m}\n`);
 }
 
 

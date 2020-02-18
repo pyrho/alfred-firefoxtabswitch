@@ -43,6 +43,7 @@ function init() {
             return;
         }
         logToFile('Fulfilling request ' + requestId);
+        logToFile(JSON.stringify(data));
         pendingRequests[requestId](data);
     }
 

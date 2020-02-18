@@ -3,14 +3,16 @@
 <plist version="1.0">
 <dict>
 	<key>bundleid</key>
-	<string></string>
+	<string>wf.25.firefoxtabswitch</string>
+	<key>category</key>
+	<string>Productivity</string>
 	<key>connections</key>
 	<dict>
-		<key>A023AF35-1CDC-41B7-B6F8-936ED31CDE9E</key>
+		<key>1D27C620-D93E-415E-B35B-285615D46445</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>951E9C16-3580-4C95-A118-548331D62339</string>
+				<string>2F7B9E9D-FF74-47F0-A7FD-8BE2FB7EBF2C</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -21,35 +23,37 @@
 		</array>
 	</dict>
 	<key>createdby</key>
-	<string></string>
+	<string>Damien "pyrho" Rajon</string>
 	<key>description</key>
-	<string></string>
+	<string>Quickly switch between tabs</string>
 	<key>disabled</key>
 	<false/>
 	<key>name</key>
-	<string>test</string>
+	<string>Firefox Tab Switch</string>
 	<key>objects</key>
 	<array>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>argumenttype</key>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>./node_modules/.bin/run-node ./host/client.js switch "$1"</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
 				<integer>0</integer>
-				<key>keyword</key>
-				<string>ff</string>
-				<key>subtext</key>
-				<string></string>
-				<key>text</key>
-				<string></string>
-				<key>withspace</key>
-				<true/>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.input.keyword</string>
+			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>A023AF35-1CDC-41B7-B6F8-936ED31CDE9E</string>
+			<string>2F7B9E9D-FF74-47F0-A7FD-8BE2FB7EBF2C</string>
 			<key>version</key>
-			<integer>1</integer>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -59,13 +63,15 @@
 				<key>alfredfiltersresultsmatchmode</key>
 				<integer>0</integer>
 				<key>argumenttreatemptyqueryasnil</key>
-				<true/>
+				<false/>
 				<key>argumenttrimmode</key>
 				<integer>0</integer>
 				<key>argumenttype</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>escaping</key>
 				<integer>102</integer>
+				<key>keyword</key>
+				<string>fw</string>
 				<key>queuedelaycustom</key>
 				<integer>3</integer>
 				<key>queuedelayimmediatelyinitially</key>
@@ -73,19 +79,19 @@
 				<key>queuedelaymode</key>
 				<integer>0</integer>
 				<key>queuemode</key>
-				<integer>1</integer>
+				<integer>2</integer>
 				<key>runningsubtext</key>
-				<string></string>
+				<string>Fetching tabs...</string>
 				<key>script</key>
-				<string>./node_modules/.bin/run-node index.js "$1"</string>
+				<string>./node_modules/.bin/run-node ./host/client.js get $1</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
-				<string></string>
+				<string>index.js</string>
 				<key>subtext</key>
 				<string></string>
 				<key>title</key>
-				<string></string>
+				<string>Firefox Tab Switch</string>
 				<key>type</key>
 				<integer>0</integer>
 				<key>withspace</key>
@@ -94,7 +100,7 @@
 			<key>type</key>
 			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
-			<string>951E9C16-3580-4C95-A118-548331D62339</string>
+			<string>1D27C620-D93E-415E-B35B-285615D46445</string>
 			<key>version</key>
 			<integer>3</integer>
 		</dict>
@@ -103,22 +109,22 @@
 	<string></string>
 	<key>uidata</key>
 	<dict>
-		<key>951E9C16-3580-4C95-A118-548331D62339</key>
+		<key>1D27C620-D93E-415E-B35B-285615D46445</key>
 		<dict>
 			<key>xpos</key>
-			<integer>285</integer>
+			<integer>10</integer>
 			<key>ypos</key>
-			<integer>255</integer>
+			<integer>10</integer>
 		</dict>
-		<key>A023AF35-1CDC-41B7-B6F8-936ED31CDE9E</key>
+		<key>2F7B9E9D-FF74-47F0-A7FD-8BE2FB7EBF2C</key>
 		<dict>
 			<key>xpos</key>
-			<integer>85</integer>
+			<integer>150</integer>
 			<key>ypos</key>
-			<integer>250</integer>
+			<integer>10</integer>
 		</dict>
 	</dict>
 	<key>webaddress</key>
-	<string></string>
+	<string>www.25.wf</string>
 </dict>
 </plist>

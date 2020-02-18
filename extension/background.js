@@ -1,38 +1,11 @@
-/*
-const shell = {}
-shell.port = chrome.runtime.connectNative('shell')
-chrome.runtime.onConnectExternal.addListener((port) => {
-  // Send request to the application
-  port.onMessage.addListener((request) => {
-    shell.port.postMessage(request)
-  })
-  // Receive response
-  shell.port.onMessage.addListener((response) => {
-    port.postMessage(response)
-  })
-});
-
-
-setInterval(() => {
-    chrome.tabs.query({}, tabs => {
-        tabs.forEach(t => {
-            console.log(t.title + ', ' + t.url);
-        });
-    });
-}, 2000);
-*/
-
-/*
-On startup, connect to the "ping_pong" app.
-*/
-var port = browser.runtime.connectNative("ping_pong");
+const port = browser.runtime.connectNative("alfred-firefoxtabswitch");
 
 function sendTabList({ requestId, port }) {
     chrome.tabs.query({}, tabs => {
 
         const relevantData = tabs.map(e => {
             return {
-                id: e.id,
+                id: e.index,
                 windowId: e.windowId,
                 url: e.url,
                 title: e.title,
@@ -73,23 +46,7 @@ function dispatcher({ cmd, requestId, port }) {
     return;
 }
 
-/*
-Listen for messages from the app.
-*/
 port.onMessage.addListener(response => {
-    console.log(`Got message from NM: ${JSON.stringify(response)}`);
+    // console.log(`Got message from NM: ${JSON.stringify(response)}`);
     dispatcher({ ...response, port });
 });
-
-port.onDisconnect.addListener(e =>{ 
-    console.log('port disconnected (probably an error): ' + JSON.stringify(e, null, 2));
-});
-
-
-/*
- On a click on the browser action, send the app a message.
- browser.browserAction.onClicked.addListener(() => {
-     console.log("Sending:  ping");
-     port.postMessage("ping");
- });
- */

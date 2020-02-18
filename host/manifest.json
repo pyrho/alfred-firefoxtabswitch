@@ -1,7 +1,7 @@
 {
-  "name": "ping_pong",
-  "description": "Example host for native messaging",
+  "name": "alfred-firefoxtabswitch",
+  "description": "A Native Messaging host that enables quickly switching between tabs using Alfred",
   "path": "/Users/pyrho/repos/perso/tabcontrol/host/app.js",
   "type": "stdio",
-  "allowed_extensions": [ "ping_pong@example.org" ]
+  "allowed_extensions": [ "alfred-firefoxtabswitch@25.wf" ]
 }
