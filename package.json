@@ -1,6 +1,6 @@
 {
   "name": "alfred-firefoxtabswitch",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "An alfred workflow to quickly switch between tabs on Firefox",
   "type": "module",
   "main": "index.js",
@@ -10,10 +10,10 @@
     "preuninstall": "alfy-cleanup"
   },
   "keywords": [
-      "alfred",
-      "tab",
-      "firefox",
-      "webextension"
+    "alfred",
+    "tab",
+    "firefox",
+    "webextension"
   ],
   "author": "Damien 'pyrho' Rajon",
   "license": "Unlicense",
