@@ -5,7 +5,8 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "postinstall": "alfy-init",
+    "generateAppManifest": "node generateAppManifest.js $(npm -g root)",
+    "postinstall": "npm run-s generateAppManifest && alfy-init",
     "preuninstall": "alfy-cleanup"
   },
   "keywords": [],

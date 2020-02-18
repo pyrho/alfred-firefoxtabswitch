@@ -1,0 +1,7 @@
+{
+  "name": "alfredtabswitch",
+  "description": "A Native Messaging host that enables quickly switching between tabs using Alfred",
+  "path": ">>>PATH<<<",
+  "type": "stdio",
+  "allowed_extensions": [ "alfredtabswitch@25.wf" ]
+}

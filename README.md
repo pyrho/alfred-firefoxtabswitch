@@ -30,7 +30,7 @@ npm install -g alfred-firefoxtabswitch
 
 The workflow will register automatically with Alfred, and the
 [Native Manifest](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Native_manifests)
-will be written automatically upon install at `/Library/Application Support/Mozilla/NativeMessagingHosts/alfred-firefoxtabswitch.json`
+will be written automatically upon install at `/Library/Application Support/Mozilla/NativeMessagingHosts/alfredtabswitch.json`
 
 # Usage
 

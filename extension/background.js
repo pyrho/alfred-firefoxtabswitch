@@ -1,4 +1,4 @@
-const port = browser.runtime.connectNative("alfred-firefoxtabswitch");
+const port = browser.runtime.connectNative("alfredtabswitch");
 
 function sendTabList({ requestId, port }) {
     chrome.tabs.query({}, tabs => {
