@@ -1,6 +1,8 @@
 Alfred Firefox Tab switcher
 ===========================
 
+**/!\ WIP /!\**
+
 An [Alfred](https://www.alfredapp.com/) workflow to quickly switch between
 firefox tabs.
 
@@ -35,6 +37,8 @@ with firefox.
 TODO
 
 ## Install the workflow
+
+TODO
 
 ```
 npm install -g alfred-firefoxtabswitch
