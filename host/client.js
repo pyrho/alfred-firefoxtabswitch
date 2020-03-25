@@ -72,17 +72,14 @@ async function main() {
 
         case 'switch':
             sendMessageToHostApp(`switchTo:${arg}`); //.then(d => console.log(d));
-            await runApplescript(`set devEditionExists to false
-try
-	do shell script "osascript -e 'exists application \"Firefox Developer Edition\"'"
-	set devEditionExists to true
-end try
-
-if devEditionExists then
-	tell application "Firefox Developer Edition" to activate
-else
-	tell application "Firefox" to activate
-end if`);
+            const e = runApplescript.sync('exists application "Firefox Developer Edition"');
+            if (e) {
+                runApplescript.sync(
+                    'tell application "Firefox Developer Edition" to activate',
+                );
+            } else {
+                runApplescript.sync('tell application "Firefox" to activate');
+            }
             break;
 
         default:
