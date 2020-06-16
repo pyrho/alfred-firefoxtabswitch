@@ -93,6 +93,68 @@ extension with an native messaging component that allows alfred to communicate
 with firefox.
 
 
-# Debugging
+# Troubleshooting
 
-TODO
+If shit ain't working, check the following (in that order):
+
+## Check the native message host manifest
+
+```bash
+❯ cat ~/Library/Application\ Support/Mozilla/NativeMessagingHosts/alfredtabswitch.json
+{
+  "name": "alfredtabswitch",
+  "description": "A Native Messaging host that enables quickly switching between tabs using Alfred",
+  "path": "/usr/local/lib/node_modules/alfred-firefoxtabswitch/host/app.js",
+  "type": "stdio",
+  "allowed_extensions": [
+    "alfredtabswitch@25.wf"
+  ]
+}  
+```
+
+## Check that the native messaging host is started by Firefox
+
+Find the PID of the native messaging host process.
+```bash
+❯ lsof -i UDP:52547 # 52547 is the port used by our UDP socket.
+COMMAND   PID  USER   FD   TYPE             DEVICE SIZE/OFF NODE NAME
+node    13578 pyrho   56u  IPv4 0xef6cec813ce54835      0t0  UDP localhost:52547
+```
+
+Confirm with pstree that this is indeed a process spawned by firefox
+```bash
+❯ pstree -g3 -p 13578 # -p `PID`, we got the PID from the command above
+─┬= 00001 root /sbin/launchd
+ └─┬= 13534 pyrho /Applications/Firefox Developer Edition.app/Contents/MacOS/firefox
+   └─── 13578 pyrho /usr/local/bin/node /usr/local/lib/node_modules/alfred-firefoxtabswitch/host/app.js /Users/pyrho/Library/Application Support/Moz
+```
+
+If you have a similar output, the issue is elsewhere.
+
+## Open the extension debugger
+Open firefox and go to `about:devtools-toolbox?type=extension&id=alfredtabswitch%4025.wf`
+check the console and see if there is any error messages.
+
+## Try the client manually
+Go to `/usr/local/lib/node_modules/alfred-firefoxtabswitch/host` and run `❯ node client.js get`, you should be greeted 
+with a JSON object representing the list of tabs:
+```json
+{
+	"items": [
+		{
+			"title": "Purify - Functional programming library for TypeScript",
+			"subtitle": "https://gigobyte.github.io/purify/adts/Maybe",
+			"arg": "0:3"
+		}
+	]
+}
+```
+
+## Enable native messaging host debug logs
+Go to `/usr/local/lib/node_modules/alfred-firefoxtabswitch/host`, and edit he
+`utils.js` file to uncomment the line with the `appendFileSync`
+
+This will log some information to the specified file.
+
+Do not try to launch the host (app.js) manually, that is not how native
+messaging works (well you can, but it won't really do anything).
