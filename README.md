@@ -22,6 +22,7 @@ messaging host component of the extension (required before the extension is
 started).
 
 ```
+mkdir -p "~/Library/Application Support/Mozilla/NativeMessagingHosts/"
 npm install -g alfred-firefoxtabswitch
 ```
 
