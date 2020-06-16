@@ -46,6 +46,15 @@ present in either the title or the URL.
 Then simply hit ENTER on the tab you want to focus.
 
 
+# Similar
+
+I only discovered the existence of [a
+pre-existing](https://github.com/deanishe/alfred-firefox) workflow by the
+legendary @deanishe **after** doing all of this ... Yeah I know.
+
+While my one focused on tab switching only, the other one is much more
+featureful; so give that a try if you need more.
+
 # Architecture
 
 ```
@@ -91,7 +100,6 @@ use Apple Script to switch tabs for Safari, Chrome etc.
 But Firefox does not expose its tabs to the system, so the only way is to use an
 extension with an native messaging component that allows alfred to communicate
 with firefox.
-
 
 # Troubleshooting
 
