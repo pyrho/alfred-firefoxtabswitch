@@ -1,32 +1,32 @@
 {
-  "name": "alfred-firefoxtabswitch",
-  "version": "1.1.1",
-  "description": "An alfred workflow to quickly switch between tabs on Firefox",
-  "main": "index.js",
-  "scripts": {
-    "generateAppManifest": "node generateAppManifest.js $(npm -g root)",
-    "postinstall": "npm run-s generateAppManifest && alfy-init",
-    "preuninstall": "alfy-cleanup"
-  },
-  "keywords": [
-    "alfred",
-    "tab",
-    "firefox",
-    "webextension"
-  ],
-  "author": "Damien 'pyrho' Rajon",
-  "license": "Unlicense",
-  "devDependencies": {
-    "web-ext": "^4.1.0"
-  },
-  "dependencies": {
-    "alfy": "^0.9.1",
-    "node-ipc": "^9.1.1",
-    "node-native-messaging-host": "^1.0.5",
-    "run-applescript": "^4.0.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/pyrho/alfred-firefoxtabswitch.git"
-  }
+    "name": "alfred-firefoxtabswitch",
+    "version": "1.1.1",
+    "description": "An alfred workflow to quickly switch between tabs on Firefox",
+    "main": "index.js",
+    "scripts": {
+        "generateAppManifest": "node generateAppManifest.js $(npm -g root)",
+        "postinstall": "npm run-s generateAppManifest && alfy-init",
+        "preuninstall": "alfy-cleanup"
+    },
+    "keywords": [
+        "alfred",
+        "tab",
+        "firefox",
+        "webextension"
+    ],
+    "author": "Damien 'pyrho' Rajon",
+    "license": "Unlicense",
+    "devDependencies": {
+        "web-ext": "^4.2.0"
+    },
+    "dependencies": {
+        "alfy": "^0.9.1",
+        "node-ipc": "^9.1.1",
+        "node-native-messaging-host": "^1.0.5",
+        "run-applescript": "^4.0.0"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/pyrho/alfred-firefoxtabswitch.git"
+    }
 }
