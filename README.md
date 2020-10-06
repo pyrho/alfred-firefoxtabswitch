@@ -1,3 +1,5 @@
+2020-10-06: *You're really better off using [this](https://github.com/deanishe/alfred-firefox) workflow instead*
+
 Alfred Firefox Tab switcher
 ===========================
 
